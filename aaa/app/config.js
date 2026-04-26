@@ -1,0 +1,35 @@
+const CONFIG = {
+  ENABLE_ASSISTANTS: true,
+  ENABLE_FLEXIBLE_HIFZ: true,
+  ENABLE_PROGRAMS: true,
+  ENABLE_WEEK_TRACKING: true,
+};
+
+const DEFAULT_DIRECTOR_CODES = ["director1"];
+const DEFAULT_ASSISTANT_CODES = ["assistant1"];
+
+const HALAQA_LOGIN_CODES = {
+  HALAQA_ONSITE: "ONSITE",
+  HALAQA_ONLINE: "ONLINE",
+};
+
+const HALAQA_CATALOG = [
+  {
+    id: HALAQA_LOGIN_CODES.HALAQA_ONSITE,
+    code: HALAQA_LOGIN_CODES.HALAQA_ONSITE,
+    label: "الحلقة الحضورية",
+  },
+  {
+    id: HALAQA_LOGIN_CODES.HALAQA_ONLINE,
+    code: HALAQA_LOGIN_CODES.HALAQA_ONLINE,
+    label: "الحلقة الإلكترونية",
+  },
+];
+
+export {
+  CONFIG,
+  DEFAULT_ASSISTANT_CODES,
+  DEFAULT_DIRECTOR_CODES,
+  HALAQA_CATALOG,
+  HALAQA_LOGIN_CODES,
+};
