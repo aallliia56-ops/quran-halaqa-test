@@ -1,0 +1,1020 @@
+/* =====================================================
+   0) أساسيات
+===================================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body{
+  font-family:"Cairo", sans-serif;
+  margin:0;
+  padding:20px;
+  background-color:#f0f4f8;
+  color:#34495e;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:100vh;
+}
+
+.container{
+  background-color:#fff;
+  width:100%;
+  max-width:1100px;
+  padding:25px 20px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.07);
+}
+
+h1,h2,h3,h4{ margin:0 0 15px; color:#2c3e50; }
+h1{ text-align:center; margin-bottom:10px; }
+.subtitle{ margin:0; font-size:.9rem; color:#7f8c8d; }
+.hidden{ display:none !important; }
+
+/* =====================================================
+   1) رسائل
+===================================================== */
+.message{
+  margin-top:15px;
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:.9rem;
+  font-weight:600;
+  text-align:center;
+}
+.message.error{ background:#ffebee; color:#c62828; border:1px solid #ef5350; }
+.message.success{ background:#e8f5e9; color:#2e7d32; border:1px solid #66bb6a; }
+.message.info{ background:#e3f2fd; color:#1565c0; border:1px solid #64b5f6; }
+
+/* =====================================================
+   2) أزرار عامة
+===================================================== */
+.button{
+  border:none;
+  border-radius:10px;
+  padding:10px 18px;
+  font-size:.95rem;
+  font-weight:600;
+  cursor:pointer;
+  display:inline-block;
+  transition:all .2s ease;
+}
+.button.primary{ background:#3498db; color:#fff; }
+.button.success{ background:#2ecc71; color:#fff; }
+.button.danger{ background:#e74c3c; color:#fff; }
+.button.secondary{ background:#95a5a6; color:#fff; }
+.button:hover{ transform:translateY(-1px); box-shadow:0 4px 10px rgba(0,0,0,.15); }
+.button:disabled{ background:#b0bec5; cursor:not-allowed; box-shadow:none; }
+
+.delegated-info{ font-size:.8rem; color:#8e44ad; margin-top:3px; }
+
+/* =====================================================
+   3) إدخال
+===================================================== */
+.input-group{ margin-bottom:15px; }
+.input-group label{ display:block; margin-bottom:5px; font-size:.9rem; font-weight:600; }
+.input-group input, .input-group select{
+  width:100%;
+  padding:9px 10px;
+  border-radius:8px;
+  border:1px solid #d0d7de;
+  font-size:.9rem;
+}
+.input-group input:focus, .input-group select:focus{
+  outline:none;
+  border-color:#3498db;
+  box-shadow:0 0 0 2px rgba(52,152,219,.25);
+}
+.info-text{ font-size:.85rem; color:#7f8c8d; margin-top:5px; }
+
+/* =====================================================
+   4) رأس اللوحات + تبويبات
+===================================================== */
+.dashboard-header{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:20px;
+  border-bottom:1px solid #ecf0f1;
+  padding-bottom:12px;
+}
+.header-actions{ display:flex; flex-wrap:wrap; gap:8px; }
+
+.tabs{ display:flex; flex-direction:column; gap:6px; margin-bottom:15px; }
+.tab-button{
+  border:none;
+  border-radius:10px;
+  padding:8px 10px;
+  font-size:.9rem;
+  font-weight:600;
+  background:#ecf5ff;
+  color:#34495e;
+  cursor:pointer;
+  text-align:center;
+}
+.tab-button.active{ background:#3498db; color:#fff; }
+.tab-content-container{ margin-top:5px; }
+.tab-content.hidden{ display:none; }
+
+/* =====================================================
+   5) تقدم الطالب + بطاقات المهام
+===================================================== */
+.progress-section{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-bottom:12px;
+}
+.progress-card{
+  background:#f9fbff;
+  padding:10px 12px;
+  border-radius:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+}
+.progress-card.hifz{ border-right:4px solid #2ecc71; }
+.progress-card.murajaa{ border-right:4px solid #ffb74d; }
+
+.progress-inline{ display:flex; align-items:center; gap:.75rem; margin-top:.25rem; }
+.progress-bar{
+  flex:1;
+  height:8px;
+  background:#e0e6ed;
+  border-radius:999px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,#3498db,#2ecc71);
+  transition:width .4s ease;
+}
+.progress-percent{ margin:0; font-size:.85rem; font-weight:700; min-width:3ch; }
+
+.small-text{ font-size:.8rem; color:#7f8c8d; }
+.small-text.muted{ color:#9aa4b2; }
+
+.tasks-section h3{ margin-bottom:10px; }
+.tasks-list{ margin-top:10px; }
+
+.task-card{
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e0e6ed;
+  padding:8px 10px;
+  margin-bottom:8px;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.task-card.hifz{ border-right:4px solid #2e7d32; }
+.task-card.murajaa{ border-right:4px solid #ef6c00; }
+.task-card.general{ border-right:4px solid #1565c0; }
+.task-header{ display:flex; justify-content:space-between; align-items:center; gap:6px; }
+.task-title{ font-weight:700; font-size:.85rem; }
+
+.task-type-tag{
+  font-size:.8rem;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#ecf0f1;
+}
+.task-type-tag.hifz{ background:#e8f5e9; color:#2e7d32; }
+.task-type-tag.murajaa{ background:#fff3e0; color:#ef6c00; }
+.task-type-tag.general{ background:#e3f2fd; color:#1565c0; }
+
+.task-body{ margin-top:6px; font-size:.9rem; }
+.task-body.mission-text{ font-size:1.2rem; font-weight:700; line-height:1.8; color:#2c3e50; }
+
+.task-footer{ margin-top:8px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.task-points-tag{ font-size:.8rem; padding:3px 8px; border-radius:999px; background:#f0f4f8; }
+.task-status-text{ font-size:.8rem; font-weight:600; }
+
+/* إخفاء سطر "المهمة الحالية" كما كان عندك */
+#student-hifz-progress-label,
+#student-murajaa-progress-label{ display:none !important; }
+
+/* =====================================================
+   6) تبويبات الطالب (مهامي / مهام المساعد)
+===================================================== */
+.student-tabs{ display:flex; gap:6px; margin:10px 0; }
+.student-tab-button{
+  border:none;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:.85rem;
+  font-weight:600;
+  background:#ecf5ff;
+  color:#34495e;
+  cursor:pointer;
+  transition:all .15s ease;
+}
+.student-tab-button.active{
+  background:#3498db;
+  color:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+
+#student-screen{
+  max-width:560px;
+}
+
+#student-screen .dashboard-header{
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
+  margin-bottom:12px;
+  padding-bottom:10px;
+}
+
+#student-screen .header-actions{
+  justify-content:flex-start;
+  gap:6px;
+}
+
+#student-screen .header-actions .button{
+  padding:6px 10px;
+  font-size:.8rem;
+  border-radius:999px;
+  box-shadow:none;
+}
+
+#student-screen #welcome-student{
+  margin:0 0 8px;
+  font-size:1.3rem;
+  font-weight:900;
+}
+
+#student-screen .student-tabs,
+#student-screen #student-main-tasks > h3,
+#student-screen #student-assistant-tab > h3,
+#student-screen #student-assistant-tab > .info-text{
+  display:none !important;
+}
+
+#student-screen .progress-section{
+  gap:8px;
+  margin:8px 0 10px;
+}
+
+#student-screen .progress-card{
+  padding:8px 10px;
+  border-radius:10px;
+}
+
+#student-screen .progress-card h3{
+  margin-bottom:8px;
+  font-size:1rem;
+}
+
+#student-screen .tasks-section{
+  margin-bottom:10px;
+}
+
+#student-screen .tasks-list{
+  margin-top:0;
+}
+
+.student-assistant-toggle-wrap{
+  display:flex;
+  justify-content:center;
+  margin:4px 0 8px;
+}
+
+.student-assistant-toggle{
+  border:none;
+  background:transparent;
+  color:#64748b;
+  min-width:120px;
+  height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  transition:background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.student-assistant-toggle:hover{
+  background:#eef2f7;
+  color:#2c3e50;
+}
+
+.student-assistant-toggle-icon{
+  font-size:1.25rem;
+  line-height:1;
+  transition:transform .2s ease;
+}
+
+.student-assistant-toggle-text{
+  font-size:.82rem;
+  font-weight:700;
+  line-height:1;
+}
+
+.student-assistant-toggle.is-open .student-assistant-toggle-icon{
+  transform:rotate(180deg);
+}
+
+#student-screen #student-assistant-tab{
+  margin-top:0;
+}
+
+/* =====================================================
+   7) شريط أيام الأسبوع (الطالب + ولي الأمر + بطاقات المعلم)
+===================================================== */
+.week-strip{
+  display:flex;
+  gap:4px;
+  margin-top:6px;
+  justify-content:center;
+  flex-wrap:nowrap;
+}
+
+.week-day{
+  min-width:22px;
+  padding:4px 6px;
+  border-radius:999px;
+  border:1px solid #ccc;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:4px;
+  background-color:#f9fafb;
+}
+.week-day.done{
+  border-color:#16a34a;
+  background-color:#e0fce5;
+  font-weight:600;
+}
+.week-day-label{ direction:rtl; }
+.week-day-icon{ font-size:14px; }
+
+/* =====================================================
+   8) مهام المراجعة (Teacher Review)
+===================================================== */
+.tasks-review-container{ margin-top:10px; }
+
+.review-student-block{
+  background:#fff;
+  border-radius:10px;
+  border:1px solid #e0e6ed;
+  padding:8px;
+  margin-bottom:8px;
+}
+.review-student-title{ font-weight:700; margin-bottom:6px; font-size:.9rem; }
+
+.review-task-item{
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e0e6ed;
+  padding:12px;
+  margin-bottom:8px;
+  box-shadow:0 1px 6px rgba(0,0,0,.04);
+}
+.review-task-item.hifz{ border-right:5px solid #16a34a; }
+.review-task-item.murajaa{ border-right:5px solid #2563eb; }
+.review-task-item.general{ border-right:5px solid #facc15; }
+
+.review-task-body{ font-size:.8rem; margin-top:3px; }
+
+/* Footer + أيقونات قبول/رفض/تحويل */
+.review-task-footer{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:6px;
+}
+
+.review-task-footer .button{
+  width:42px;
+  height:42px;
+  padding:0;
+  border-radius:12px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+  font-weight:900;
+  background:#fff;
+  box-shadow:none;
+  transition:all .15s ease;
+}
+
+.review-task-footer .button.success{
+  color:#16a34a;
+  border:2px solid #16a34a;
+}
+.review-task-footer .button.success:hover{ background:#16a34a; color:#fff; }
+
+.review-task-footer .button.danger{
+  color:#dc2626;
+  border:2px solid #dc2626;
+}
+.review-task-footer .button.danger:hover{ background:#dc2626; color:#fff; }
+
+.review-task-footer .button:not(.success):not(.danger){
+  color:#2563eb;
+  border:2px solid #2563eb;
+}
+.review-task-footer .button:not(.success):not(.danger):hover{ background:#2563eb; color:#fff; }
+
+.review-points-badge{
+  min-width:22px;
+  height:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  font-size:.65rem;
+  font-weight:900;
+  color:#64748b;
+  border:2px solid #cbd5e1;
+  background:#fff;
+}
+
+/* مساعد: select */
+.assistant-picker select{
+  padding:6px 8px;
+  border-radius:8px;
+  border:1px solid #d0d7de;
+  font-size:.85rem;
+}
+
+/* =====================================================
+   9) قائمة الطلاب (Teacher Student Cards) — النسخة النهائية
+===================================================== */
+.data-list{ list-style:none; padding:0; margin:0; }
+
+/* li نفسه لا يفرض تصميم البطاقة — البطاقة داخلها */
+.data-list li{
+  background:transparent;
+  border:none;
+  padding:0;
+  margin:0 0 10px;
+}
+
+/* البطاقة النهائية */
+.student-card{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:10px 12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+  margin-bottom:8px;
+}
+
+.student-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.student-name{
+  font-weight:900;
+  font-size:1rem;
+  color:#2c3e50;
+}
+
+.student-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+/* زر التعديل يبقى طبيعي لكن أصغر شوي */
+.student-actions .btn-edit-student{
+  padding:6px 10px;
+  font-size:.85rem;
+  line-height:1;
+}
+
+/* chip-toggle — هذه النسخة النهائية (pill) */
+.chip-toggle{
+  appearance:none;
+  height:28px;                 /* هذا أهم سطر */
+  min-width:44px;              /* يخليها متناسقة */
+  padding:0 8px;               /* نحف العرض */
+  border:1.5px solid #cbd5e1;
+  background:#fff;
+  color:#64748b;
+  border-radius:999px;
+  font-size:.7rem;             /* أصغر شوي */
+  font-weight:900;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  user-select:none;
+}
+
+
+.chip-toggle.on{
+  border-color:#22c55e;
+  color:#166534;
+  background:#f0fdf4;
+}
+
+
+.chip-toggle:hover{ border-color:#94a3b8; }
+.chip-toggle:active{ transform:scale(.98); }
+
+.chip-toggle .ico{
+  display:inline-block;
+  min-width:34px;
+  text-align:center;
+}
+
+/* التفاصيل */
+.student-details{
+  margin-top:8px;
+  padding-top:8px;
+  padding-bottom:20px; /* عشان النتوء */
+  border-top:1px dashed #e5e7eb;
+  font-size:.75rem;
+  color:#374151;
+}
+.student-details.hidden{ display:none; }
+.student-sub{ font-size:.8rem; color:#7f8c8d; }
+
+/* النتوء السفلي */
+.card-notch{
+  position:absolute;
+  left:50%;
+  bottom:-14px;
+  transform:translateX(-50%);
+  width:46px;
+  height:28px;
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-top:none;
+  border-radius:0 0 24px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:5;
+}
+.card-notch .chev{
+  font-size:16px;
+  opacity:.7;
+  transition:transform .2s ease;
+}
+.student-card.details-open .card-notch .chev{ transform:rotate(180deg); }
+
+/* =====================================================
+   10) لوحة الشرف
+===================================================== */
+.honor-list{ list-style:none; margin:8px 0 0; padding:0; }
+.honor-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:6px 10px;
+  margin-bottom:6px;
+  border-radius:10px;
+  background:#f9fbff;
+  border-right:4px solid #95a5a6;
+  font-size:.85rem;
+}
+.honor-item.rank-1{ border-right-color:#f1c40f; background:#fff9e0; }
+.honor-item.rank-2{ border-right-color:#bdc3c7; background:#f7f9fb; }
+.honor-item.rank-3{ border-right-color:#e67e22; background:#fff3e6; }
+
+/* =====================================================
+   11) عرض المنهج
+===================================================== */
+.curriculum-view{ display:grid; grid-template-columns:1fr; gap:10px; }
+.curriculum-list{
+  max-height:350px;
+  overflow-y:auto;
+  border-radius:10px;
+  border:1px solid #ecf0f1;
+  padding:8px;
+  font-size:.85rem;
+}
+.curriculum-item{ padding:4px 0; border-bottom:1px dashed #e0e6ed; }
+.curriculum-item:last-child{ border-bottom:none; }
+
+/* =====================================================
+   12) ولي الأمر
+===================================================== */
+.children-list{ margin-top:10px; }
+.child-card{
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e0e6ed;
+  padding:12px;
+  margin-bottom:10px;
+}
+.child-name{ font-weight:700; margin-bottom:5px; }
+.child-line{ font-size:.85rem; margin:2px 0; }
+.child-card .progress-bar{ margin:6px 0 4px; }
+
+/* =====================================================
+   13) اختيار الحلقة (حضوري/إلكتروني)
+===================================================== */
+.halaqa-toggle{ margin-top:8px; display:flex; gap:6px; }
+
+.halaqa-btn{
+  border:none;
+  border-radius:999px;
+  padding:5px 12px;
+  font-size:.8rem;
+  font-weight:600;
+  background:#ecf5ff;
+  color:#34495e;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+.halaqa-btn.active{
+  background:#3498db;
+  color:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+
+/* =====================================================
+   14) شبكة طلاب الحلقة (Tiles)
+===================================================== */
+.halaqa-grid{
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+  gap:10px;
+}
+.halaqa-tile{
+  background:#fff;
+  border-radius:12px;
+  border:1px solid #e0e6ed;
+  padding:10px;
+  box-shadow:0 1px 4px rgba(0,0,0,.04);
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  font-size:.9rem;
+  text-align:center;
+}
+.halaqa-tile:hover{
+  transform:translateY(-2px);
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+  border-color:#3498db;
+}
+.halaqa-tile-code{
+  font-weight:700;
+  margin-bottom:4px;
+  font-size:1.4rem;
+}
+.halaqa-tile-line{
+  font-size:.8rem;
+  color:#555;
+}
+
+/* =====================================================
+   15) Director Dashboard
+===================================================== */
+.director-section{
+  margin-bottom:18px;
+}
+
+.director-section-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.director-section-title{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:900;
+  color:#1f2937;
+}
+
+.director-section-subtitle{
+  margin:.3rem 0 0;
+  font-size:.82rem;
+  color:#6b7280;
+}
+
+.director-section-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.director-stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  gap:12px;
+}
+
+.director-stat-card{
+  background:linear-gradient(180deg,#ffffff 0%,#f8fbff 100%);
+  border:1px solid #dbe6f1;
+  border-radius:16px;
+  padding:14px 15px;
+  box-shadow:0 8px 20px rgba(15,23,42,.05);
+}
+
+.director-stat-card-primary{
+  background:linear-gradient(180deg,#eff6ff 0%,#dbeafe 100%);
+  border-color:#93c5fd;
+  box-shadow:0 14px 30px rgba(37,99,235,.12);
+}
+
+.director-stat-card-primary .director-stat-value{
+  font-size:2rem;
+  color:#1d4ed8;
+}
+
+.director-stat-label{
+  font-size:.82rem;
+  color:#64748b;
+  font-weight:700;
+}
+
+.director-stat-value{
+  margin-top:10px;
+  font-size:1.7rem;
+  font-weight:900;
+  color:#0f172a;
+}
+
+.director-surface-card{
+  border:1px solid #dde6ee;
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(15,23,42,.04);
+  background:#fff;
+}
+
+.director-card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:12px;
+}
+
+.director-student-accounts-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:14px;
+}
+
+.director-student-accounts-grid .task-card{
+  width:auto;
+  display:flex;
+  flex-direction:column;
+}
+
+.director-inline-metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+  gap:10px;
+}
+
+.director-inline-metrics-compact{
+  grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.director-inline-metric{
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  padding:10px 12px;
+  background:#f8fafc;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.director-inline-metric-success{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+}
+
+.director-inline-metric-info{
+  background:#eff6ff;
+  border-color:#bfdbfe;
+}
+
+.director-inline-metric-warning{
+  background:#fff7ed;
+  border-color:#fed7aa;
+}
+
+.director-inline-metric-danger{
+  background:#fef2f2;
+  border-color:#fecaca;
+}
+
+.director-inline-metric-muted{
+  background:#f8fafc;
+  border-color:#e2e8f0;
+}
+
+.director-inline-metric-label{
+  font-size:.78rem;
+  color:#64748b;
+  font-weight:700;
+}
+
+.director-inline-metric-value{
+  font-size:1rem;
+  color:#0f172a;
+}
+
+.director-today-alert{
+  border-radius:18px;
+  padding:14px 16px;
+  border:1px solid #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  box-shadow:0 10px 22px rgba(15,23,42,.05);
+}
+
+.director-today-alert-success{
+  background:#f0fdf4;
+  border-color:#bbf7d0;
+}
+
+.director-today-alert-warning{
+  background:#fff7ed;
+  border-color:#fed7aa;
+}
+
+.director-today-alert-danger{
+  background:#fef2f2;
+  border-color:#fecaca;
+}
+
+.director-today-alert-label{
+  font-size:.82rem;
+  font-weight:800;
+  color:#475569;
+}
+
+.director-today-alert-main{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  font-size:1rem;
+}
+
+.director-today-alert-main strong{
+  font-size:1.85rem;
+  line-height:1;
+  color:#0f172a;
+}
+
+.director-today-alert-text{
+  font-size:.88rem;
+  font-weight:800;
+  color:#334155;
+}
+
+.director-quick-actions{
+  gap:10px;
+}
+
+.director-quick-actions .button{
+  flex:1 1 180px;
+}
+
+.director-subtabs{
+  margin-top:0;
+}
+
+.director-accounts-list .task-card,
+.director-card-grid .task-card{
+  margin-bottom:0;
+}
+
+.director-halaqa-card{
+  border:1px solid #dbe5ef;
+  border-radius:16px;
+  box-shadow:0 8px 22px rgba(15,23,42,.04);
+}
+
+.director-halaqa-card-header{
+  align-items:flex-start;
+}
+
+.director-halaqa-quick-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+.director-halaqa-quick-meta span{
+  font-size:.76rem;
+  font-weight:700;
+  color:#475569;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:999px;
+  padding:4px 8px;
+}
+
+.director-halaqa-header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.director-health-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px 10px;
+  border-radius:999px;
+  font-size:.76rem;
+  font-weight:900;
+  border:1px solid transparent;
+}
+
+.director-health-badge-success{
+  background:#e8f5e9;
+  color:#166534;
+  border-color:#86efac;
+}
+
+.director-health-badge-warning{
+  background:#fff7ed;
+  color:#c2410c;
+  border-color:#fdba74;
+}
+
+.director-health-badge-danger{
+  background:#fef2f2;
+  color:#b91c1c;
+  border-color:#fca5a5;
+}
+
+/* =====================================================
+   16) Responsive
+===================================================== */
+@media (min-width:768px){
+  .container{ padding:30px; }
+  .dashboard-header{ flex-direction:row; justify-content:space-between; align-items:center; }
+  .tabs{ flex-direction:row; }
+  .tab-button{ flex:1; }
+  .progress-section{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+  .curriculum-view{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+
+  #student-screen .dashboard-header{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  #student-screen .progress-section{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width:420px){
+  .chip-toggle{
+    height:26px;
+    padding:0 6px;
+    font-size:.65rem;
+  }
+
+  .director-section-head{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .director-section-actions{
+    width:100%;
+  }
+
+  .director-section-actions .button,
+  .director-halaqa-header-actions .button{
+    width:100%;
+  }
+
+  .director-halaqa-header-actions{
+    width:100%;
+    justify-content:space-between;
+  }
+}
+
+.student-form-top{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.form-section{border:1px solid #e5e7eb; border-radius:12px; padding:8px 10px; background:#fff; margin-bottom:8px;}
+.form-section summary{cursor:pointer; font-weight:900; color:#1f2937; padding:6px 4px;}
+.grid-2{display:grid; grid-template-columns:1fr; gap:10px;}
+@media(min-width:768px){ .grid-2{grid-template-columns:repeat(2,minmax(0,1fr));} }
+
+.segmented{display:flex; gap:6px; flex-wrap:wrap;}
+.seg-btn{
+  border:1px solid #d1d5db; background:#fff; border-radius:999px;
+  padding:6px 12px; font-weight:900; cursor:pointer;
+}
+.seg-btn.active{background:#3498db; color:#fff; border-color:#3498db;}
